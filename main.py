@@ -5,12 +5,11 @@ Main file for program execution
 """
 
 # Python packages
-import tkinter
+import tkinter as tk
 
 # UI
-import ui.trackerui as ui
+from ui.trackerui import WorkTracker
 
 if __name__ == "__main__":
-    root = tkinter.Tk()
-    gui = ui.WorkTracker(root)
-    root.mainloop()
+    gui = WorkTracker()
+    gui.mainloop()

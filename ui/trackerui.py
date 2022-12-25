@@ -4,26 +4,27 @@ Author: atramirez
 Main UI window related items
 """
 
-import tkinter
+# Python imports
+import tkinter as tk
+from enum import IntEnum
 
+# UI imports
+from ui.tracker_entry import TrackerEntry
+from ui.tracker_tracking import Tracker
 
-class WorkTracker():
+class WorkTracker(tk.Tk):
     """
 
     """
-    def __init__(self, root):
-        self.root = root
-        root.title("Work Tracker")
-        root.geometry("450x350")
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        self.title("Work Tracker")
+        self.geometry("450x350")
+        self._frame = None
+        self.switch_frame(TrackerEntry)
 
-    def main_window(self):
-        pass
-
-    def initial_entry(self):
-        pass
-
-    def active_work(self):
-        pass
-
-    def finish_entry(self):
-        pass
+    def switch_frame(self, frame_class):
+        if self._frame is not None:
+            self._frame.destroy()
+        self._frame = frame_class(self)
+        self._frame.pack()
